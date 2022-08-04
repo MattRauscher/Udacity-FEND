@@ -70,7 +70,7 @@ function buildNav(){
 
 function addActiveWhenViewport(){
     for (const section of sections){
-        console.log('viewport '+isInViewPort(section))
+        console.log(`section ${section.id} is in viewport ${isInViewPort(section)}`)
         isInViewPort(section) ? 
         section.classList.add('your-active-class') :
         section.classList.remove('your-active-class');
@@ -80,18 +80,13 @@ function addActiveWhenViewport(){
 // Scroll to anchor ID using scrollTO event
 
 
-function scrollToAnchor(anchor){
-    const rect = anchor.getBoundingClientRect();
-
-    scrollTo(rect.x, rect.y);
+function scrollToAnchor(element){
+    const rect = element.getBoundingClientRect();
+    console.log(rect)
+    scrollTo(rect.x, rect.top+window.scrollY);
+    console.log("scrolling to "+ rect.x+" "+ rect.y)
 }
-const navSections = document.getElementById('navbar__list');
-for (navSection in navSections){
-    document.addEventListener("click", function(){
-        navSection.classList
 
-    })
-}
 
 /**
  * End Main Functions
@@ -102,7 +97,23 @@ for (navSection in navSections){
 // Build menu 
 buildNav();
 // Scroll to section on link click
+const navSections = document.getElementById("navbar__list").getElementsByTagName("li");
 
+for (i=0; i<navSections.length; i++){
+    let section = "section"+(i+1);
+    console.log(section);
+    let targetSection = document.getElementById(section);
+    navSections[i].addEventListener("click", () => {
+            
+            console.log("target Section "+targetSection.id);
+           // scrollToAnchor(targetSection);
+           targetSection.scrollIntoView({
+            behavior: 'smooth',
+            alignToTop: true
+           });
+
+        })
+}
 
 
 // Set sections as active
