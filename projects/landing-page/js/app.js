@@ -48,6 +48,7 @@ function isInViewPort(element){
 // build the nav
 const navFragment = document.createDocumentFragment();
 const sections = document.getElementsByTagName('section')
+const navBar = document.getElementById('navbar__list');
 
 function buildNav(){
     
@@ -61,32 +62,43 @@ function buildNav(){
         navFragment.appendChild(li);
 
     }
-    const navBar = document.getElementById('navbar__list');
+    
     navBar.appendChild(navFragment);
 
 }
 
 // Add class 'active' to section when near top of viewport
 
-function addActiveWhenViewport(){
+function activeNavBarSection(section, navS){
+    console.log('sections send to ActiveNavBarSection Funciton include '+section.id)
+    console.log('activeNavBarNavSection contains section 2 '+navS.item(0).classList.contains("section2"));
+    for(i=0; i<navS.length; i++) {
+        console.log(navS.item(i).className);
+       if(navS.item(i).classList.contains(section.id)){
+            navS.item(i).classList.add('your-active-class');
+            console.log('ADDED');
+        } else {
+            if(navS.item(i).classList.contains('your-active-class') == true){
+                navS.item(i).classList.remove('your-active-class');
+        }
+    }}
+
+}
+
+function addActiveWhenViewport(navSections){
     for (const section of sections){
         console.log(`section ${section.id} is in viewport ${isInViewPort(section)}`)
-        isInViewPort(section) ? 
-        section.classList.add('your-active-class') :
-        section.classList.remove('your-active-class');
+        if(isInViewPort(section)==true){
+            section.classList.add('your-active-class');
+            activeNavBarSection(section, navSections);
+        } else {
+            section.classList.remove('your-active-class');
+        }
+        
     };
 };
 
 // Scroll to anchor ID using scrollTO event
-
-
-function scrollToAnchor(element){
-    const rect = element.getBoundingClientRect();
-    console.log(rect)
-    scrollTo(rect.x, rect.top+window.scrollY);
-    console.log("scrolling to "+ rect.x+" "+ rect.y)
-}
-
 
 /**
  * End Main Functions
@@ -102,12 +114,14 @@ const navSections = document.getElementById("navbar__list").getElementsByTagName
 for (i=0; i<navSections.length; i++){
     let section = "section"+(i+1);
     console.log(section);
+    const navSection =  navSections[i];
+    console.log("nav Section: "+navSection.className);
     let targetSection = document.getElementById(section);
     navSections[i].addEventListener("click", () => {
             
             console.log("target Section "+targetSection.id);
-           // scrollToAnchor(targetSection);
-           targetSection.scrollIntoView({
+
+            targetSection.scrollIntoView({
             behavior: 'smooth',
             alignToTop: true
            });
@@ -119,5 +133,6 @@ for (i=0; i<navSections.length; i++){
 // Set sections as active
 
 document.addEventListener("scroll", function(){
-    addActiveWhenViewport()
+    console.log("final scroll log "+navSections.item(1).className)
+    addActiveWhenViewport(navSections)
 });
