@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData ={};
+const projectData =[];
 
 const express =require('express');
 const bodyParser = require('body-parser');
@@ -29,15 +29,25 @@ function listening(){
 };
 
 // Initialize all route with a callback function
-
+app.get('/all', getProjectData);
 
 // Callback function to complete GET '/all'
-app.get('/all', function(req, res){
+function getProjectData(req, res){
     res.send(projectData)
-});
+};
 // Post Route
 
-app.post('/all', function (req, res) {
-    projectData.push(req.body)
-    res.send('POST received')
-  });
+app.post('/addWeather', addWeather);
+
+function addWeather(req, res) {
+    newEntry = {
+        name: req.body.name,
+        temp: req.body.temp,
+        date: req.body.date,
+        content: req.body.content
+    }
+    projectData.push(newEntry);
+    res.send(projectData);
+    console.log('body ', req.body)
+    console.log('new projectData is ', projectData);
+  };

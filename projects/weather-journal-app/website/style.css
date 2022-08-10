@@ -16,8 +16,10 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-.holder{
-
+.holder.feel{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .entry{
