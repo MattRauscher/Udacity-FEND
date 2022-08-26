@@ -15,9 +15,9 @@
 
         <main>
             <section>
-                <form id="text" onsubmit="handleSubmit(event)">
+                <form id="textForm" onclick="return Client.handleSubmit(event)">
                     <input id="name" type="text" name="input" value=""  placeholder="Name">
-                    <input type="submit" name="" value="Submit">
+                    <input type="submit" name="" value="Submit" onsubmit="Client.handleSubmit(event)">
                 </form>
             </section>
 

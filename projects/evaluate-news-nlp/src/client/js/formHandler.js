@@ -1,12 +1,13 @@
+import { checkForName } from './nameChecker'
+
 function handleSubmit(event) {
-    alert("preventing default!")
+    console.log("success!")
     event.preventDefault()
-   
+    
     // check what text was put into the form field
     let formText = document.getElementById('name').value
 
     alert("form text is ", formText)
-    setTimeout(console.log("Timed Out", 5000));
     
     /*
     console.log("::: Form Submitted :::")
@@ -17,4 +18,6 @@ function handleSubmit(event) {
     })*/
 }
 
-export { handleSubmit }
+export { 
+    handleSubmit 
+}

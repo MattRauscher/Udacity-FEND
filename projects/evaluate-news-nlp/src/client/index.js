@@ -7,11 +7,9 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
+export {
+  handleSubmit,
+  checkForName
+}
 
-if (typeof handleSubmit === "function") {
-    console.log('exist');
-  }
-else { console.log("can't find it")}
-console.log("imported everything");
-
-
+console.log("ready");
