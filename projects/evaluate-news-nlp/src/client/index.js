@@ -1,7 +1,17 @@
 import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
 
-console.log(checkForName);
+import './styles/resets.scss'
+import './styles/base.scss'
+import './styles/footer.scss'
+import './styles/form.scss'
+import './styles/header.scss'
 
-alert("I EXIST")
-console.log("CHANGE!!");
+
+if (typeof handleSubmit === "function") {
+    console.log('exist');
+  }
+else { console.log("can't find it")}
+console.log("imported everything");
+
+

@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.logo {
+    background-image: url("../img/email.svg");
+    background-repeat: no-repeat;
+    background-size:contain;
+    height: 100px;
+    width: 200px;
+}
