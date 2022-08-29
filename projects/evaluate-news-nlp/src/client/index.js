@@ -1,4 +1,5 @@
-import { checkForName } from './js/nameChecker'
+
+//import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
 
 import './styles/resets.scss'
@@ -8,8 +9,12 @@ import './styles/form.scss'
 import './styles/header.scss'
 
 export {
-  handleSubmit,
-  checkForName
+  handleSubmit
 }
 
-console.log("ready");
+console.log("Functions Exported");
+
+document
+  .getElementById("textForm")
+  .addEventListener("submit", handleSubmit);
+

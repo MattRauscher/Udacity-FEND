@@ -1,4 +1,4 @@
-function checkForName(inputText) {
+/*function checkForName(inputText) {
     
     console.log("::: Running checkForName :::", inputText);
     debugger;
@@ -15,4 +15,4 @@ function checkForName(inputText) {
     }
 }
 
-export { checkForName }
+export { checkForName }*/
