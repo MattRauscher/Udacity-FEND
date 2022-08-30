@@ -6,6 +6,8 @@ const FormData = require('form-data');
 
 //setup .env
 const dotenv = require('dotenv');
+const { response } = require('express');
+const { REPL_MODE_STRICT } = require('repl');
 dotenv.config();
 
 const app = express()
@@ -26,18 +28,32 @@ app.listen(8080, function () {
 })
 
 app.get('/analysetext', function (req, res) {
-    console.log('key', process.env.MC_API_KEY);
-    const targetUrl = encodeURIComponent(req.query.url);
-    console.log('url is',`\'${targetUrl}\'`)
-    
-    const formData = new FormData();
-    formData.append('key', process.env.MC_API_KEY)
-    formData.append('url', `\'${targetUrl}\'`)
-    axios.post('https://api.meaningcloud.com/sentiment-2.1', formData
-    ).then(function(response) {
-        console.log(response.data);
-    }).catch(function (error){
-        console.log('error', error);
-    })
-    res.send({ "message": "Responded!" })
+    //const targetUrl = encodeURIComponent(req.query.url);
+    const targetUrl = req.query.url;
+    const axios = require('axios');
+    let data = new FormData();
+    data.append('key', `${process.env.MC_API_KEY}`);
+    data.append('url', `${targetUrl}`);
+
+    let config = {
+        method: 'post',
+        url: 'https://api.meaningcloud.com/sentiment-2.1',
+        headers: { 
+            'key': '', 
+            ...data.getHeaders()
+          },
+        data: data,
+        redirect:'follow'
+      };
+
+    axios(config)
+        .then((response) => {
+            //console.log("the response is ", response.status, response.statusText)
+            //console.log("the header is ", response.headers)
+            res.json(response.data)
+        
+        })  
+        .catch(
+            error => console.log(error)
+        );
 })

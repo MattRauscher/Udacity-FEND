@@ -6,15 +6,24 @@ function handleSubmit(event) {
     let formText = document.getElementById('name').value
 
     console.log(`formtext is ${formText}`)
-    formText = encodeURIComponent(formText)
-    console.log(`new formtext is ${formText}`)
+    //formText = encodeURIComponent(formText)
+    //console.log(`new formtext is ${formText}`)
     const params = `?url=${formText}`
-    console.log("::: Form Submitted :::")
-    fetch(`http://localhost:8080/analysetext${params}`)
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+    
+
+    async function catchAnalysis() {
+        console.log("::: Form Submitted :::")
+        fetch(`http://localhost:8080/analysetext${params}`)
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('results').innerHTML = result
+                console.log(result)
+            })   
+            .catch(error => console.log('error', error));
+        
+    }
+
+    catchAnalysis()
 }
 
 export { 
