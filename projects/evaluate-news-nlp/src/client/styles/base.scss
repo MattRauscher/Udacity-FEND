@@ -12,3 +12,13 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+table {
+    tr, th {
+        border: 1px solid yellowgreen;
+        padding: 12px;
+    }
+    tr:nth-child(even) {
+        background-color: yellowgreen;
+    }
+}
