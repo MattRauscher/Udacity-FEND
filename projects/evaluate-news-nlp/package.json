@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack serve  --config webpack.dev.js --open"
@@ -21,6 +21,7 @@
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
     "axios": "^0.27.2",
+    "babel-jest": "^29.0.2",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",

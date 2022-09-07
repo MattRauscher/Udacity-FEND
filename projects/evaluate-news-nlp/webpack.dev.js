@@ -6,10 +6,6 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/client/index.js',
-    output: {
-        library: 'Client',
-        libraryTarget: 'var'
-    },
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
