@@ -1,6 +1,15 @@
-import { catchAnalysis } from './catchAnalysis'
+//import { catchAnalysis } from './catchAnalysis'
 
-test("properly Analyse test with API", () =>{
-    let url = 'https://www.vox.com/policy-and-politics/2022/9/6/23339017/trump-fbi-mar-a-lago-aileen-cannon-judge-special-master-supreme-court-executive-privilege'
+jest.mock('./http')
+
+import { fetchNewsData } from './http'
+
+
+test("Mock API works", () =>{
+    let testing = fetchNewsData()
+    console.log(`fetchNewsData is ${testing}`)
+
+    let fetchedResults = JSON.parse(fetchNewsData())
+    expect(fetchedResults.score_tag).toBe("P")
     
 })

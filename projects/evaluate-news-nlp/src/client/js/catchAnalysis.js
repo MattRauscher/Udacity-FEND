@@ -1,8 +1,9 @@
 import { expressPolarity } from './polarity'
+import { fetchNewsData } from './http'
 
 async function catchAnalysis(params) {
         console.log("::: Form Submitted :::")
-        fetch(`http://localhost:8080/analysetext?url=${params}`)
+        fetchNewsData(params)
             .then(response => response.text())
             .then(result => {
                 let jsonresult = JSON.parse(result)
