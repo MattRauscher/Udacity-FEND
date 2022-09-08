@@ -10,7 +10,7 @@ async function catchAnalysis(params) {
             let jsonresult = JSON.parse(result)
             document.getElementById('results').innerHTML = buildNewDOM(params, jsonresult)
         })  
-        .catch(error => console.log('error', error));
+        .catch(error => alert('error', error));
     }
 
 
