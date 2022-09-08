@@ -1,7 +1,7 @@
 
 function fetchNewsData(){
     console.log("::: MOCK API :::")
-    let responseData = {
+    const responseData = {
         "agreement": "DISAGREEMENT",
         "confidence": "86",
         "irony": "NONIRONIC",
@@ -13,10 +13,15 @@ function fetchNewsData(){
             "credits": "3",
             "remaining_credits": "19849"
         },
-        "subjectivity": "SUBJECTIVE"
+        "subjectivity": "SUBJECTIVE",
+        "sentence_list": [
+            {
+                "text":"the first sentence"
+            }
+        ]
     }
-    console.log(`response Text is ${response.text()}`)
-    return Promise.resolve(response)
+    
+    return Promise.resolve(responseData)
 }
 
 export {

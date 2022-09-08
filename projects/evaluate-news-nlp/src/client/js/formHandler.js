@@ -9,7 +9,7 @@ function handleSubmit(event) {
     console.log("check validity", checkValidity(params))
     
     //use URL value to launch Analysis
-    return (checkValidity(params) ? catchAnalysis(params) : alert("Please return a valide URL") )
+    return (checkValidity(params) ? catchAnalysis(params) : alert("Please return a valid URL") )
 }
 export { 
     handleSubmit 
